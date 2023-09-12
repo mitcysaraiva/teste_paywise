@@ -1,18 +1,28 @@
 from django.db import models
 
-# Create your models here.
+class Usuario(models.Model):
+    nome = models.CharField(max_length=200)
+    email = models.CharField(max_length=100)
+    senha = models.CharField(max_length=30)
 
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField("date published")
-    
-    def __str__(self):
-        return self.question_text
+class Doador(models.Model):
+    nome = models.CharField(max_length=200)
+    email = models.CharField(max_length=100)
+    senha = models.CharField(max_length=30)
+    endereco = models.CharField(max_length=200)
+    telefone = models.CharField(max_length=15)
+    cpf = models.CharField(max_length=11)
+    cidade = models.CharField(max_length=45)
+    cep = models.CharField(max_length=45)
+    estado = models.CharField(max_length=45)
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.choice_text
+class Campanha(models.Model):
+    usuario = models.ForeignKey("Usuario", on_delete=models.CASCADE)
+    nome = models.CharField(max_length=100)
+    descrição = models.CharField(max_length=300)
+    endereco = models.CharField(max_length=200)
+    telefone = models.CharField(max_length=15)
+    cpf = models.CharField(max_length=11)
+    cidade = models.CharField(max_length=45)
+    cep = models.CharField(max_length=45)
+    estado = models.CharField(max_length=45)
